@@ -4,7 +4,7 @@ import Description from "./components/Description/Description.jsx";
 import Options from './components/Options/Options.jsx';
 import FedbackForm from './components/Feedback/Feedback.jsx';
 import { useState, useEffect } from 'react';
-import css from "../src/components/Options/Options.module.css"
+import Notification from './components/Notification/Notification.jsx';
 
 
 function App() {
@@ -44,7 +44,8 @@ function App() {
     <div>
       <Description/>
       <Options  onTrack={updateFeedback} onReset={resetButton} totalFeedback={totalFeedback}/>
-      <FedbackForm  data={values} totalFeedback={totalFeedback} positive={Positive}/>
+      {totalFeedback?<FedbackForm data={values} totalFeedback={totalFeedback} positive={Positive} />:
+      <Notification/>}
     </div>
   )
 }
