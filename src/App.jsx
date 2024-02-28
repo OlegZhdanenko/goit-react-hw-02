@@ -1,7 +1,7 @@
 
 import './App.css'
 import Description from "./components/Description/Description.jsx";
-import ClikcTracker from './components/Options/Options.jsx';
+import Options from './components/Options/Options.jsx';
 import FedbackForm from './components/Feedback/Feedback.jsx';
 import { useState, useEffect } from 'react';
 import css from "../src/components/Options/Options.module.css"
@@ -42,16 +42,9 @@ function App() {
 
   return (
     <div>
-      <Description />
-      <div className={css.list}>
-      <ClikcTracker data={values.good} onTrack={()=>updateFeedback("good")}>Good:</ClikcTracker>
-      <ClikcTracker data={values.neutral} onTrack={()=>updateFeedback("neutral")}>Neutral:</ClikcTracker>
-      <ClikcTracker data={values.bad} onTrack={() => updateFeedback("bad")}>Bad:</ClikcTracker>
-        {totalFeedback >= 1 && <ClikcTracker onTrack={resetButton}>Reset</ClikcTracker>}
-        </div>
-      {totalFeedback >=1 ?
+      <Description/>
+      <Options  onTrack={updateFeedback} onReset={resetButton} totalFeedback={totalFeedback}/>
       <FedbackForm  data={values} totalFeedback={totalFeedback} positive={Positive}/>
-      : <p>No feedback yet</p>}
     </div>
   )
 }
